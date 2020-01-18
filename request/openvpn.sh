@@ -280,19 +280,15 @@ read -p " Confirme a Porta(Proxy): " -e -i 80 PPROXY
 teste_porta $PPROXY
 done
 cat > /etc/openvpn/client-common.txt <<EOF
-# OVPN_ACCESS_SERVER_PROFILE=New-Ultimate
+# OVPN_ACCESS_SERVER_PROFILE=OpenVPN
 client
-nobind
 dev tun
-redirect-gateway def1 bypass-dhcp
-remote-random
 remote ${SERVER_IP} ${PORT} ${PROTOCOL}
 http-proxy ${SERVER_IP} ${PPROXY}
 $CIPHER
 comp-lzo yes
-keepalive 10 20
-float
 auth-user-pass
+float
 EOF
 # Iptables
 if [[ ! -f /proc/user_beancounters ]]; then
