@@ -85,8 +85,8 @@ pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}'
 echo -ne "\033[1;32m [1] > " && msg -azu "Socks Python DIRECT $P3"
 echo -ne "\033[1;32m [2] > " && msg -azu "Socks Python OPENVPN $P4"
 echo -ne "\033[1;32m [3] > " && msg -azu "Socks Python GETTUNEL $P5"
-echo -ne "\033[1;32m [4] > " && msg -azu "Socks Python TCP BYPASS $P6"
-echo -ne "\033[1;32m [5] > " && msg -azu "$(fun_trans "PARAR TODOS SOCKETS PYTHON")"
+#echo -ne "\033[1;32m [4] > " && msg -azu "Socks Python TCP BYPASS $P6"
+echo -ne "\033[1;32m [4] > " && msg -azu "$(fun_trans "PARAR TODOS SOCKETS PYTHON")"
 echo -ne "\033[1;32m [0] > " && msg -bra "$(fun_trans "VOLTAR")" && msg -bar
 IP=(meu_ip)
 while [[ -z $portproxy || $portproxy != @(0|[1-7]) ]]; do
@@ -94,10 +94,10 @@ msg -ne " $(fun_trans "Digite a Opcao"): " && read portproxy
 tput cuu1 && tput dl1
 done
  case $portproxy in
-    5)remove_fun && return;;
+    4)remove_fun && return;;
     0)return;;
  esac
-msg -ama " $(fun_trans "Escolha qual Porta o Soc_k Vai Escutar")"
+msg -ama " $(fun_trans "Escolha qual Porta o Socks Vai Escutar")"
 msg -bar
 porta_socket=
 while [[ -z $porta_socket || ! -z $(mportas|grep -w $porta_socket) ]]; do
@@ -113,7 +113,7 @@ msg -ne " $(fun_trans "Digite o Texto de Status"): " && read texto_soket
     1)screen -dmS screen python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket";;
     2)screen -dmS screen python ${SCPinst}/POpen.py "$porta_socket" "$texto_soket";;
     3)gettunel_fun "$porta_socket";;
-    4)tcpbypass_fun "$porta_socket" "$texto_soket";;
+#    4)tcpbypass_fun "$porta_socket" "$texto_soket";;
     esac
 msg -bar
 msg -ama " $(fun_trans "Procedimento Concluido")"
