@@ -6,8 +6,6 @@ message.txt
 usercodes
 sockspy.sh
 POpen.py
-PPriv.py
-PPub.py
 PDirect.py
 speedtest.py
 speed.sh
