@@ -618,7 +618,7 @@ export -f meu_ip
 export -f fun_ip
 clear
 msg -bar
-msg -ama "     INFORMACAO DO SERVIDOR E PORTAS ATIVAS"
+msg -ama "$(fun_trans "PORTAS ATIVAS E INFORMACOES DO SERVIDOR")"
 msg -bar
 mine_port
 msg -bar
