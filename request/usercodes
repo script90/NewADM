@@ -281,7 +281,7 @@ while true; do
      err_fun 1 && continue
      elif [[ "${#nomeuser}" -lt "4" ]]; then
      err_fun 2 && continue
-     elif [[ "${#nomeuser}" -gt "24" ]]; then
+     elif [[ "${#nomeuser}" -gt "20" ]]; then
      err_fun 3 && continue
      elif [[ "$(echo ${usuarios_ativos[@]}|grep -w "$nomeuser")" ]]; then
      err_fun 14 && continue
@@ -293,7 +293,7 @@ while true; do
      read -p ": " senhauser
      if [[ -z $senhauser ]]; then
      err_fun 4 && continue
-     elif [[ "${#senhauser}" -lt "6" ]]; then
+     elif [[ "${#senhauser}" -lt "4" ]]; then
      err_fun 5 && continue
      elif [[ "${#senhauser}" -gt "20" ]]; then
      err_fun 6 && continue
@@ -307,7 +307,7 @@ while true; do
      err_fun 7 && continue
      elif [[ "$diasuser" != +([0-9]) ]]; then
      err_fun 8 && continue
-     elif [[ "$diasuser" -gt "360" ]]; then
+     elif [[ "$diasuser" -gt "999" ]]; then
      err_fun 9 && continue
      fi 
      break
@@ -427,7 +427,7 @@ while true; do
      err_fun 7 && continue
      elif [[ "$diasuser" != +([0-9]) ]]; then
      err_fun 8 && continue
-     elif [[ "$diasuser" -gt "360" ]]; then
+     elif [[ "$diasuser" -gt "999" ]]; then
      err_fun 9 && continue
      fi
      break
@@ -480,7 +480,7 @@ msg -ne "$(fun_trans "Usuario Selecionado"): " && echo -e "$useredit"
      read -p ": " senhauser
      if [[ -z "$senhauser" ]]; then
      err_fun 4 && continue
-     elif [[ "${#senhauser}" -lt "6" ]]; then
+     elif [[ "${#senhauser}" -lt "4" ]]; then
      err_fun 5 && continue
      elif [[ "${#senhauser}" -gt "20" ]]; then
      err_fun 6 && continue
@@ -494,7 +494,7 @@ while true; do
      err_fun 7 && continue
      elif [[ "$diasuser" != +([0-9]) ]]; then
      err_fun 8 && continue
-     elif [[ "$diasuser" -gt "360" ]]; then
+     elif [[ "$diasuser" -gt "999" ]]; then
      err_fun 9 && continue
      fi
      break
