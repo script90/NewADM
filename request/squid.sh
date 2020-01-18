@@ -22,7 +22,7 @@ fun_squid  () {
   var_squid="/etc/squid3/squid.conf"
   fi
   [[ -e $var_squid ]] && {
-  msg -ama " $(fun_trans "REMOVENDO SQU_ID*")"
+  msg -ama " $(fun_trans "REMOVENDO SQUID*")"
   msg -bar
   service squid stop > /dev/null 2>&1
   service squid3 stop > /dev/null 2>&1
@@ -33,7 +33,7 @@ fun_squid  () {
   [[ -e $var_squid ]] && rm $var_squid
   return 0
   }
-msg -ama  " $(fun_trans "INSTALADOR SQU_ID ADM-ULTIMATE")"
+msg -ama  " $(fun_trans "INSTALADOR SQUID ADM-ULTIMATE")"
 msg -bar
 fun_ip
 msg -ne " $(fun_trans "Confirme seu ip")"; read -p ": " -e -i $IP ip
@@ -59,7 +59,7 @@ unset PORT
   return 1
   }
 msg -bar
-msg -ama  " $(fun_trans "INSTALANDO SQU_ID")"
+msg -ama  " $(fun_trans "INSTALANDO SQUID")"
 msg -bar
 fun_bar "apt-get install squid3 -y"
 msg -bar
@@ -74,11 +74,11 @@ msg -bar
 read -p "[1/2]: " -e -i 1 proxy_opt
 tput cuu1 && tput dl1
 if [[ $proxy_opt = 1 ]]; then
-msg -ama  " $(fun_trans "INSTALANDO SQU_ID COMUM")"
+msg -ama  " $(fun_trans "INSTALANDO SQUID COMUM")"
 elif [[ $proxy_opt = 1 ]]; then
-msg -ama " $(fun_trans "INSTALANDO SQU_ID CUSTOMIZADO")"
+msg -ama " $(fun_trans "INSTALANDO SQUID CUSTOMIZADO")"
 else
-msg -ama " $(fun_trans "INSTALANDO SQU_ID COMUM")"
+msg -ama " $(fun_trans "INSTALANDO SQUID COMUM")"
 proxy_opt=1
 fi
 unset var_squid
@@ -203,7 +203,7 @@ service ssh restart > /dev/null 2>&1
 service squid3 restart > /dev/null 2>&1
 service squid restart > /dev/null 2>&1
 echo -e " \033[1;32m[OK]"
-msg -bar && msg -ama " $(fun_trans "SQ_UID CONFIGURADO*")" && msg -bar
+msg -bar && msg -ama " $(fun_trans "SQUID CONFIGURADO*")" && msg -bar
 #UFW
 for ufww in $(mportas|awk '{print $2}'); do
 ufw allow $ufww > /dev/null 2>&1
@@ -211,11 +211,11 @@ done
 }
 online_squid () {
 payload="/etc/payloads"
-msg -azu " $(fun_trans "CONFIGURAÇÃO DE SQU_ID*")"
+msg -azu " $(fun_trans "CONFIGURAÇÃO DE SQUID*")"
 msg -bar
-echo -ne "\033[1;32m [1] > " && msg -azu "$(fun_trans "Lugar um H_ost no Squ_id")"
-echo -ne "\033[1;32m [2] > " && msg -azu "$(fun_trans "Remover H_ost do Squ_id")"
-echo -ne "\033[1;32m [3] > " && msg -azu "$(fun_trans "Desinstalar o Squ_id")"
+echo -ne "\033[1;32m [1] > " && msg -azu "$(fun_trans "Lugar um Host no Squid")"
+echo -ne "\033[1;32m [2] > " && msg -azu "$(fun_trans "Remover Host do Squid")"
+echo -ne "\033[1;32m [3] > " && msg -azu "$(fun_trans "Desinstalar o Squid")"
 echo -ne "\033[1;32m [0] > " && msg -bra "$(fun_trans "Voltar")"
 msg -bar
 while [[ $varpay != @(0|[1-3]) ]]; do
@@ -225,12 +225,12 @@ done
 if [[ "$varpay" = "0" ]]; then
 return 1
 elif [[ "$varpay" = "1" ]]; then
-msg -ama " $(fun_trans "Hos_ts Atuais Dentro do Squ_id")"
+msg -ama " $(fun_trans "Hosts Atuais Dentro do Squid")"
 msg -bar
 cat $payload | awk -F "/" '{print $1,$2,$3,$4}'
 msg -bar
 while [[ $hos != \.* ]]; do
-msg -ne " $(fun_trans "Digite a Nova Ho_st"): " && read hos
+msg -ne " $(fun_trans "Digite a Nova Host"): " && read hos
 tput cuu1 && tput dl1
 [[ $hos = \.* ]] && continue
 msg -ama " $(fun_trans "Comece com") .${cor[0]}"
@@ -239,9 +239,9 @@ tput cuu1 && tput dl1
 done
 host="$hos/"
 [[ -z $host ]] && return 1
-[[ `grep -c "^$host" $payload` -eq 1 ]] && msg -ama "${cor[4]}$(fun_trans "Ho_st Ja Existe")${cor[0]}" && msg -bar && return 1
+[[ `grep -c "^$host" $payload` -eq 1 ]] && msg -ama "${cor[4]}$(fun_trans "Host Ja Existe")${cor[0]}" && msg -bar && return 1
 echo "$host" >> $payload && grep -v "^$" $payload > /tmp/a && mv /tmp/a $payload
-msg -ama "$(fun_trans "Ho_st Adicionada Com Sucesso")"
+msg -ama "$(fun_trans "Host Adicionada Com Sucesso")"
 msg -bar
 cat $payload | awk -F "/" '{print $1,$2,$3,$4}'
 msg -bar
@@ -254,7 +254,7 @@ service squid restart > /dev/null 2>&1
 fi	
 return 0
 elif [[ "$varpay" = "2" ]]; then
-echo -e "${cor[4]} $(fun_trans "Hos_ts Atuais Dentro do Squ_id")"
+echo -e "${cor[4]} $(fun_trans "Hosts Atuais Dentro do Squid")"
 msg -bar 
 cat $payload | awk -F "/" '{print $1,$2,$3,$4}'
 msg -bar
@@ -268,9 +268,9 @@ tput cuu1 && tput dl1
 done
 host="$hos/"
 [[ -z $host ]] && return 1
-[[ `grep -c "^$host" $payload` -ne 1 ]] && msg -ama "$(fun_trans "Ho_st Nao Encontrada")" && msg -bar && return 1
+[[ `grep -c "^$host" $payload` -ne 1 ]] && msg -ama "$(fun_trans "Host Nao Encontrada")" && msg -bar && return 1
 grep -v "^$host" $payload > /tmp/a && mv /tmp/a $payload
-msg -ama " $(fun_trans "Ho_st Removida Com Sucesso")"
+msg -ama " $(fun_trans "Host Removida Com Sucesso")"
 msg -bar
 cat $payload | awk -F "/" '{print $1,$2,$3,$4}'
 msg -bar
