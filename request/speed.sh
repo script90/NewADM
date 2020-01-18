@@ -25,7 +25,7 @@ down_load=$(echo "$starts_test" | grep "Download" | awk '{print $2,$3}')
 up_load=$(echo "$starts_test" | grep "Upload" | awk '{print $2,$3}')
 re_sult=$(echo "$starts_test" | grep "result" | awk '{print $3}')
 msg -ama " $(fun_trans "Latencia"): $ping"
-msg -ama " $(fun_trans "Upload"): $up_load"
 msg -ama " $(fun_trans "Download"): $down_load"
+msg -ama " $(fun_trans "Upload"): $up_load"
 msg -ama " $(fun_trans "Result"): $re_sult"
 msg -bar 
