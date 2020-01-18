@@ -626,7 +626,7 @@ msg -ne "$(fun_trans "SISTEMA OPERACIONAL*"): " && msg -bra "$(os_system)  "
 msg -ne "$(fun_trans "ENDERECO IP*"): " && msg -bra "$(meu_ip)"
 [[ -e ${SCPdir}/USRonlines ]] && msg -bar && msg -ne "$(fun_trans "USUARIOS ONLINE*"): " && msg -bra "$(cat ${SCPdir}/USRonlines) $(fun_trans "Usuarios")"
 [[ -e ${SCPdir}/USRexpired ]] && msg -ne "$(fun_trans "USUARIOS EXPIRADOS*"): " && msg -bra "$(cat ${SCPdir}/USRexpired) $(fun_trans "Usuarios")"
-[[ -e ${SCPdir}/message.txt ]] && msg -bar && msg -bra "MESSAGE: $(cat ${SCPdir}/message.txt)"
+#[[ -e ${SCPdir}/message.txt ]] && msg -bar && msg -bra "MESSAGE: $(cat ${SCPdir}/message.txt)"
 #[[ -e ${SCPdir}/key.txt ]] && msg -bar && msg -bra "USER-KEY: $(cat ${SCPdir}/key.txt)"
 # NOVO SISTEMA DE MENUS
 msg -bar
