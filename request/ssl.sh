@@ -26,18 +26,7 @@ return 0
 }
 msg -azu " $(fun_trans "SSL Stunnel")"
 msg -bar
-msg -ama " $(fun_trans "Selecione Uma Porta De Redirecionamento Interna")"
-msg -ama " $(fun_trans "Ou seja, uma Porta no Seu Servidor Para o SSL")"
-msg -bar
-         while true; do
-         read -p " Local-Port: " portx
-         if [[ ! -z $portx ]]; then
-            [[ $(mportas|grep -w "$portx") ]] && break || echo -e "\033[1;31m $(fun_trans "Porta Invalida")\033[0m"
-         fi
-         done
-msg -bar
-DPORT="$(mportas|grep $portx|awk '{print $2}'|head -1)"
-msg -ama " $(fun_trans "Agora Presizamos Saber Qual Porta o SSL, Vai Escutar")"
+msg -ama " $(fun_trans "Escolha a Porta Para o SSL. Exemplo: 443")"
 msg -bar
     while true; do
     read -p " Listen-SSL: " SSLPORT
@@ -49,7 +38,7 @@ msg -bar
 msg -ama " $(fun_trans "Instalando SSL")"
 msg -bar
 fun_bar "apt-get install stunnel4 -y"
-echo -e "cert = /etc/stunnel/stunnel.pem\nclient = no\nsocket = a:SO_REUSEADDR=1\nsocket = l:TCP_NODELAY=1\nsocket = r:TCP_NODELAY=1\n\n[stunnel]\nconnect = 127.0.0.1:${DPORT}\naccept = ${SSLPORT}" > /etc/stunnel/stunnel.conf
+echo -e "cert = /etc/stunnel/stunnel.pem\nclient = no\nsocket = a:SO_REUSEADDR=1\nsocket = l:TCP_NODELAY=1\nsocket = r:TCP_NODELAY=1\n\n[stunnel]\nconnect = 127.0.0.1:22\naccept = ${SSLPORT}" > /etc/stunnel/stunnel.conf
 openssl genrsa -out key.pem 2048 > /dev/null 2>&1
 (echo BR; echo BR; echo BR; echo BR; echo BR; echo BR; echo BR)|openssl req -new -x509 -key key.pem -out cert.pem -days 1095 > /dev/null 2>&1
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
