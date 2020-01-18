@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# encoding: utf-8
+# SSHPLUS By @Crazy_vpn
 import socket, threading, thread, select, signal, sys, time
 from os import system
 system("clear")
@@ -10,9 +13,9 @@ except:
 PASS = ''
 BUFLEN = 4096 * 4
 TIMEOUT = 60
-MSG = 'SSHPLUS'
+MSG = 'OK'
 DEFAULT_HOST = '0.0.0.0:22'
-RESPONSE = "HTTP/1.1 200 OK\r\n\r\n \r\n\r\n"
+RESPONSE = "HTTP/1.1 200 " + str(MSG) + "\r\nContent-length: 0\r\n\r\n \r\n\r\n"
  
 class Server(threading.Thread):
     def __init__(self, host, port):
