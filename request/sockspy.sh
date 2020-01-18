@@ -104,14 +104,11 @@ while [[ -z $porta_socket || ! -z $(mportas|grep -w $porta_socket) ]]; do
 msg -ne " $(fun_trans "Digite a Porta"): " && read porta_socket
 tput cuu1 && tput dl1
 done
-msg -ama " $(fun_trans "Escolha Um Texto de Conexao")"
-msg -bar
-msg -ne " $(fun_trans "Digite o Texto de Status"): " && read texto_soket
     case $portproxy in
 #    1)screen -dmS screen python ${SCPinst}/PPub.py "$porta_socket" "$texto_soket";;
 #    2)screen -dmS screen python3 ${SCPinst}/PPriv.py "$porta_socket" "$texto_soket" "$IP";;
-    1)screen -dmS screen python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket";;
-    2)screen -dmS screen python ${SCPinst}/POpen.py "$porta_socket" "$texto_soket";;
+    1)screen -dmS screen python ${SCPinst}/PDirect.py "$porta_socket";;
+    2)screen -dmS screen python ${SCPinst}/POpen.py "$porta_socket";;
     3)gettunel_fun "$porta_socket";;
 #    4)tcpbypass_fun "$porta_socket" "$texto_soket";;
     esac
