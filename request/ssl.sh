@@ -26,7 +26,7 @@ return 0
 }
 msg -azu " $(fun_trans "SSL Stunnel")"
 msg -bar
-msg -ama " $(fun_trans "Escolha a Porta Para o SSL. Exemplo: 443")"
+msg -ama " $(fun_trans "Escolha a Porta Para o SSL. \033[1;32mExemplo: \033[1;31m443")"
 msg -bar
     while true; do
     read -p " Listen-SSL: " SSLPORT
