@@ -82,7 +82,7 @@ pidproxy5=$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') 
 pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && P6="\033[1;32mon" || P6="\033[1;31moff"
 #echo -ne "\033[1;32m [1] > " && msg -azu "Socks Python SIMPLES $P1"
 #echo -ne "\033[1;32m [2] > " && msg -azu "Socks Python SEGURO $P2"
-echo -ne "\033[1;32m [1] > " && msg -azu "Socks Python DIRECT $P3"
+echo -ne "\033[1;32m [1] > " && msg -azu "Socks Python DIRETO $P3"
 echo -ne "\033[1;32m [2] > " && msg -azu "Socks Python OPENVPN $P4"
 echo -ne "\033[1;32m [3] > " && msg -azu "Socks Python GETTUNEL $P5"
 #echo -ne "\033[1;32m [4] > " && msg -azu "Socks Python TCP BYPASS $P6"
