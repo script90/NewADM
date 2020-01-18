@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# encoding: utf-8
-# SSHPLUS By @Crazy_vpn
 import socket, threading, thread, select, signal, sys, time
 from os import system
 system("clear")
