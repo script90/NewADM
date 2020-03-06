@@ -605,10 +605,10 @@ TOTALPID="$(echo $PID|bc)/$MAXUSER"
 echo -e "${yellow}$user $TOTALPID $HOUR" >&2
 ) &
 pid=$!
-sleep 0.5s
+sleep 0.05s
 done <<< "$(mostrar_usuarios)"
 while [[ -d /proc/$pid ]]; do
-sleep 1s
+sleep 0.05s
 done
 msg -bar
 }
@@ -708,7 +708,7 @@ verif_fun () {
     done <<< "$(mostrar_usuarios)"
     echo "${ONLINES}0"|bc > ${SCPdir}/USRonlines
     echo "${EXPIRED}0"|bc > ${SCPdir}/USRexpired
-    sleep 2s # TEMPO DE ESPERA DO LOOP
+    sleep 2s # TEMPO DE ESPERA
     clear
     done
 }
@@ -831,8 +831,6 @@ elif [[ "$sin_nao" = @(n|N) ]]; then
 break
 fi
 done
-#echo '</h8><font color="purple">new®</font></h8>' >> $local
-#echo '<h1><font>=============================</font></h1>' >> $local
 if [[ -e "$local2" ]]; then
 rm $local2  > /dev/null 2>&1
 cp $local $local2 > /dev/null 2>&1
@@ -849,11 +847,11 @@ verif_fun
 exit
 fi
 [[ -z ${VERY} ]] && verificar="\033[1;31m[Off]" || verificar="\033[1;32m[On]"
-msg -ama "$(fun_trans "GERENCIAMENTO DE USUARIOS*")"
+msg -ama "$(fun_trans "GERENCIAMENTO DE USUARIOS")"
 msg -bar
-menu_func "CRIAR NOVO USUARIO*" "REMOVER USUARIO*" "BLOQUEAR OU DESBLOQUEAR USUARIO*" "EDITAR USUARIO*" "RENOVAR USUARIO*" "DETALHES DE TODOS USUARIOS*" "MONITORAR USUARIOS CONECTADOS*" "ELIMINAR USUARIOS EXPIRADOS*" "BACKUP USUARIOS*" "BAN_NER SSH*" "-fi ${verificar} VERIFICACOES*"
-[[ -e "${SCPusr}/Limiter.log" ]] && echo -ne "$(msg -verd "[12]") $(msg -verm2 ">") " && msg -azu "$(fun_trans "VER LOG DO LIMITER*")"
-echo -ne "$(msg -verd "[0]") $(msg -verm2 ">") " && msg -bra "$(fun_trans "VOLTAR*")"
+menu_func "CRIAR NOVO USUARIO" "REMOVER USUARIO" "BLOQUEAR OU DESBLOQUEAR USUARIO" "EDITAR USUARIO" "RENOVAR USUARIO" "DETALHES DE USUARIOS" "MONITORAR USUARIOS CONECTADOS" "ELIMINAR USUARIOS EXPIRADOS" "BACKUP USUARIOS" "BANNER SSH" "-fi ${verificar} VERIFICACOES"
+[[ -e "${SCPusr}/Limiter.log" ]] && echo -ne "$(msg -verd "[12]") $(msg -verm2 ">") " && msg -azu "$(fun_trans "VER LOG DO LIMITER")"
+echo -ne "$(msg -verd "[0]") $(msg -verm2 ">") " && msg -bra "$(fun_trans "VOLTAR")"
 msg -bar
 selection=$(selection_fun 12)
 case ${selection} in
