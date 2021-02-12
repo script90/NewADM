@@ -240,13 +240,10 @@ dev tun
 status openvpn-status.log
 EOF
 updatedb
-PLUGIN=$(locate openvpn-plugin-auth-pam.so | head -1)
-[[ ! -z $(echo ${PLUGIN}) ]] && {
 echo "client-to-client
 client-cert-not-required
 username-as-common-name
-plugin $PLUGIN login" >> /etc/openvpn/server.conf
-}
+plugin $(find /usr -type f -name 'openvpn-plugin-auth-pam.so') login" >> /etc/openvpn/server.conf
 ) && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Generating CA Config" # Generate CA Config
 (
